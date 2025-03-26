@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class GravityObject : MonoBehaviour
 {
-    Rigidbody rb;
+    private Rigidbody _rb;
     
     private void Start() 
     {
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     public void SetGravity()
     {
-        rb.useGravity = true;
+        _rb.useGravity = true;
     }
 }
