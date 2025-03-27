@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Core.Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class LoadItemWorkspace : MonoBehaviour
 {
@@ -11,12 +13,11 @@ public class LoadItemWorkspace : MonoBehaviour
     [SerializeField] private Transform _content;
     
     //todo: change to localhost
-    private const string URL = "http://192.168.137.239:3000/api/names";
     private List<string> _namesArray = new ();
+    private const string URL = Config.URL + "/names";
 
     private void Start()
     {
-        Debug.Log(URL);
         StartCoroutine(FetchStringsFromApi());
     }
 
@@ -25,7 +26,7 @@ public class LoadItemWorkspace : MonoBehaviour
         UnityWebRequest www = UnityWebRequest.Get(URL);
         yield return www.SendWebRequest();
 
-        if (www.isNetworkError)
+        if (www.result == UnityWebRequest.Result.ConnectionError)
         {
             Debug.Log(www.error);
         }
@@ -42,14 +43,5 @@ public class LoadItemWorkspace : MonoBehaviour
             GameObject spawnedButton = Instantiate(_buttonPrefab, _content);
             spawnedButton.GetComponentInChildren<TextMeshProUGUI>().text = item;
         }
-    }
-}
-
-public class BypassCertificateValidation : CertificateHandler
-{
-    protected override bool ValidateCertificate(byte[] certificateData)
-    {
-        // Always return true to accept all certificates
-        return true;
     }
 }
