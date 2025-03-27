@@ -32,7 +32,7 @@ public class Workspace : MonoBehaviour
     private void Start()
     {
         
-        DisableUI();
+        //DisableUI();
         _defaultCanvas.OnDefaultItemSetActive += DefaultCanvas_OnDefaultItemSetActive;
         _defaultCanvas.OnSelectItemSetActive += DefaultCanvas_OnSelectItemSetActive;
     }

@@ -13,7 +13,7 @@ public class DefaultCanvas : MonoBehaviour
     private void Start()
     {
         _defaultItemWorkspace.SetActive(false);
-        _selectItemWorkspace.SetActive(false);
+        //_selectItemWorkspace.SetActive(false);
     }
     
     public void ShowDefaultItemWorkspace()
