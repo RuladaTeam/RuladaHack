@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GravityObject : MonoBehaviour
@@ -11,6 +12,15 @@ public class GravityObject : MonoBehaviour
 
     public void SetGravity()
     {
-        _rb.useGravity = true;
+        // try
+        // {
+        //     _rb.useGravity = true;
+        //
+        // }
+        // catch (Exception e)
+        // {
+        //     Debug.Log(this.name);
+        //     throw;
+        // } 
     }
 }
