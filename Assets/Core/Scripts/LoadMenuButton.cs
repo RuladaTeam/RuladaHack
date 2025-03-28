@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Core.Scripts;
+using Oculus.Interaction;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,9 +12,10 @@ public class LoadMenuButton : MonoBehaviour
 {
 
     [SerializeField] private Vector3 _startPositionOnTable;
-    
+    [SerializeField] private Material _loadedObjectMaterial;
+
     private const string URL_BASE = Config.URL + "/archive?name=";
-    
+
     private void Start()
     {
         GetComponent<Button>().onClick.AddListener(OnButtonClick);
@@ -23,12 +25,12 @@ public class LoadMenuButton : MonoBehaviour
     {
         StartCoroutine(DownloadFile());
     }
-    
+
     private IEnumerator DownloadFile()
     {
         UnityWebRequest www = UnityWebRequest.Get(URL_BASE + gameObject.GetComponentInChildren<TextMeshProUGUI>().text);
         yield return www.SendWebRequest();
-        
+
         if (www.result == UnityWebRequest.Result.ConnectionError)
         {
             Debug.Log(www.error);
@@ -38,24 +40,23 @@ public class LoadMenuButton : MonoBehaviour
             byte[] stlData = www.downloadHandler.data;
             List<Mesh> meshes = StlReader.Read(stlData);
             List<MeshFilter> meshFilters = new List<MeshFilter>();
-            List<GameObject> objects = new List<GameObject>();
+            List<GameObject> objectSeparated = new List<GameObject>();
             foreach (Mesh mesh in meshes)
             {
                 SpawnMesh(mesh, out MeshFilter meshFilter, out GameObject obj);
                 meshFilters.Add(meshFilter);
-                objects.Add(obj);
+                objectSeparated.Add(obj);
             }
-            
+
             GameObject combinedObj = MeshCombiner.CombineMeshes(meshFilters, _startPositionOnTable);
-            combinedObj.transform.localScale *= 0.001f;
+            SetupObject(combinedObj);
             
-            // Optionally, destroy the original objects
-            foreach (var ob in objects)
+
+            foreach (var obj in objectSeparated)
             {
-                if (ob != null)
+                if (obj != null)
                 {
-                    Destroy(ob
-                    );
+                    Destroy(obj);
                 }
             }
         }
@@ -66,8 +67,26 @@ public class LoadMenuButton : MonoBehaviour
         obj = new GameObject("LoadedObjectMesh");
         meshFilter = obj.AddComponent<MeshFilter>();
         MeshRenderer meshRenderer = obj.AddComponent<MeshRenderer>();
-        
+
         meshFilter.mesh = mesh;
-        meshRenderer.material = new Material(Shader.Find("Standard"));
+        meshRenderer.material = _loadedObjectMaterial;
     }
+
+    private void SetupObject(GameObject combinedObj)
+    {
+        combinedObj.transform.localScale *= 0.001f;
+        combinedObj.AddComponent<Rigidbody>()
+            .AddComponent<BoxCollider>()
+            .AddComponent<Grabbable>()
+            .AddComponent<GrabInteractable>();
+        Grabbable grabbable = combinedObj.GetComponent<Grabbable>();
+        combinedObj.GetComponent<GrabInteractable>().InjectOptionalPointableElement(grabbable);
+        combinedObj.GetComponent<GrabInteractable>().InjectRigidbody(combinedObj.GetComponent<Rigidbody>());
+        combinedObj.GetComponent<Rigidbody>().useGravity = false;
+        combinedObj.GetComponent<Rigidbody>().isKinematic = true;
+        combinedObj.GetComponent<BoxCollider>().isTrigger = true;
+            
+        //maybe i should add physics grabbable here 
+    }
+
 }

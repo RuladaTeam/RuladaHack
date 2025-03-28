@@ -306,3 +306,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9439a4f463454774db0ac47f6ad18f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startPositionOnTable: {x: 0, y: 1.388, z: 0.582}
+  _loadedObjectMaterial: {fileID: 2100000, guid: 2583f20b8b4e0ec428d662fac4f97177, type: 2}

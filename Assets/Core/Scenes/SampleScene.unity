@@ -18053,7 +18053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectOnTable: {fileID: 0}
-  _slider: {fileID: 0}
+  _slider: {fileID: 815372309}
 --- !u!1 &997809326
 GameObject:
   m_ObjectHideFlags: 0
