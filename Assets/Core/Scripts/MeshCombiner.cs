@@ -4,7 +4,7 @@ using UnityEngine;
 public static class MeshCombiner
 {
     public static bool useSharedMesh = false;  // Use shared meshes (faster but modifies original meshes)
-    public static bool generateNewMaterial = false; // Combine materials into a single material
+    public static bool generateNewMaterial = true; // Combine materials into a single material
     
     public static GameObject CombineMeshes(List<MeshFilter> meshFilters, Vector3 startPosition, Material material)
     {
@@ -38,7 +38,7 @@ public static class MeshCombiner
         // Assign the combined mesh to the new object
         combinedMeshFilter.mesh = combinedMesh;
         
-        combinedObject.GetComponent<MeshFilter>().mesh = combinedMesh;
+        //combinedObject.GetComponent<MeshFilter>().mesh = combinedMesh;
 
         // Handle materials
         if (generateNewMaterial)
