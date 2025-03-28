@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Scripts;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -11,8 +12,7 @@ public class LoadItemWorkspace : MonoBehaviour
 {
     [SerializeField] private GameObject _buttonPrefab;
     [SerializeField] private Transform _content;
-    
-    //todo: change to localhost
+   
     private List<string> _namesArray = new ();
     private const string URL = Config.URL + "/names";
 
@@ -20,7 +20,6 @@ public class LoadItemWorkspace : MonoBehaviour
     {
         StartCoroutine(FetchStringsFromApi());
     }
-
     IEnumerator FetchStringsFromApi()
     {
         UnityWebRequest www = UnityWebRequest.Get(URL);
@@ -29,19 +28,33 @@ public class LoadItemWorkspace : MonoBehaviour
         if (www.result == UnityWebRequest.Result.ConnectionError)
         {
             Debug.Log(www.error);
+            yield break;
         }
-        else
-        {
-            Debug.Log(www.downloadHandler.text);
-        }
-
+        
         string text = www.downloadHandler.text;
-        string[] array = text.Substring(1,text.Length-2 ).Split(",");
-        foreach (var item in array)
+        if (text == "\"\"")
+        {
+            yield break;
+        }
+        
+        string[] receivedNames = text.Substring(1,text.Length-2 ).Split(",");
+
+        while (_content.childCount > 0)
+        {
+            Destroy(_content.GetChild(0).gameObject);
+        }
+        
+        foreach (var item in receivedNames)
         {
             _namesArray.Add(item);
             GameObject spawnedButton = Instantiate(_buttonPrefab, _content);
             spawnedButton.GetComponentInChildren<TextMeshProUGUI>().text = item;
         }
+        
+    }
+
+    public void RefreshList()
+    {
+        StartCoroutine(FetchStringsFromApi());
     }
 }

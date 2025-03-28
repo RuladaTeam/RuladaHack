@@ -66,13 +66,14 @@ public class LoadMenuButton : MonoBehaviour
     {
         obj = new GameObject("LoadedObjectMesh");
         meshFilter = obj.AddComponent<MeshFilter>();
-        MeshRenderer meshRenderer = obj.AddComponent<MeshRenderer>();
+        obj.AddComponent<MeshRenderer>();
 
         meshFilter.mesh = mesh;
     }
 
     private void SetupObject(GameObject combinedObj)
     {
+        combinedObj.layer = LayerMask.NameToLayer(Config.DESTRUCTABLE_LAYER_MASK);
         combinedObj.transform.localScale *= 0.001f;
         combinedObj.AddComponent<Rigidbody>()
             .AddComponent<BoxCollider>()
@@ -84,8 +85,7 @@ public class LoadMenuButton : MonoBehaviour
         combinedObj.GetComponent<Rigidbody>().useGravity = false;
         combinedObj.GetComponent<Rigidbody>().isKinematic = true;
         combinedObj.GetComponent<BoxCollider>().isTrigger = true;
-            
-        //maybe i should add physics grabbable here 
+             
     }
 
 }
