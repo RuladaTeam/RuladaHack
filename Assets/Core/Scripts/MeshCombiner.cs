@@ -31,8 +31,10 @@ public static class MeshCombiner
         }
 
         // Create a new mesh and combine the meshes
-        Mesh combinedMesh = new Mesh();
-        combinedMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+        Mesh combinedMesh = new Mesh
+        {
+            indexFormat = UnityEngine.Rendering.IndexFormat.UInt32
+        };
         combinedMesh.CombineMeshes(combineInstances, generateNewMaterial);
 
         // Assign the combined mesh to the new object
@@ -41,23 +43,23 @@ public static class MeshCombiner
         //combinedObject.GetComponent<MeshFilter>().mesh = combinedMesh;
 
         // Handle materials
-        if (generateNewMaterial)
-        {
-            Material[] materials = new Material[meshFilters.Count];
-            for (int i = 0; i < meshFilters.Count; i++)
-            {
-                if (meshFilters[i].GetComponent<MeshRenderer>() != null)
-                {
-                    materials[i] = meshFilters[i].GetComponent<MeshRenderer>().sharedMaterial;
-                }
-            }
-            combinedMeshRenderer.material = materials[0];
-        }
-        else
-        {
-            combinedMeshRenderer.material = material;
-        }
-        
+        // if (generateNewMaterial)
+        // {
+        //     Material[] materials = new Material[meshFilters.Count];
+        //     for (int i = 0; i < meshFilters.Count; i++)
+        //     {
+        //         if (meshFilters[i].GetComponent<MeshRenderer>() != null)
+        //         {
+        //             materials[i] = meshFilters[i].GetComponent<MeshRenderer>().sharedMaterial;
+        //         }
+        //     }
+        //     combinedMeshRenderer.material = materials[0];
+        // }
+        // else
+        // {
+        //     combinedMeshRenderer.materials = new[] { material };
+        // }
+        combinedMeshRenderer.materials = new[] { material };
         return combinedObject;
     }
 }
