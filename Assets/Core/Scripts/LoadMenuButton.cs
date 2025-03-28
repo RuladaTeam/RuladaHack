@@ -48,7 +48,7 @@ public class LoadMenuButton : MonoBehaviour
                 objectSeparated.Add(obj);
             }
 
-            GameObject combinedObj = MeshCombiner.CombineMeshes(meshFilters, _startPositionOnTable);
+            GameObject combinedObj = MeshCombiner.CombineMeshes(meshFilters, _startPositionOnTable, _loadedObjectMaterial);
             SetupObject(combinedObj);
             
 
@@ -69,7 +69,6 @@ public class LoadMenuButton : MonoBehaviour
         MeshRenderer meshRenderer = obj.AddComponent<MeshRenderer>();
 
         meshFilter.mesh = mesh;
-        meshRenderer.material = _loadedObjectMaterial;
     }
 
     private void SetupObject(GameObject combinedObj)

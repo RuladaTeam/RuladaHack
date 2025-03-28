@@ -2,6 +2,6 @@
 {
     public static class Config
     {
-        public const string URL = "http://192.168.137.68:3000/api";
+        public const string URL = "http://localhost:3000/api";
     }
 }

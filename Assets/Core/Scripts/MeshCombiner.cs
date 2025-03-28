@@ -4,9 +4,9 @@ using UnityEngine;
 public static class MeshCombiner
 {
     public static bool useSharedMesh = false;  // Use shared meshes (faster but modifies original meshes)
-    public static bool generateNewMaterial = true; // Combine materials into a single material
+    public static bool generateNewMaterial = false; // Combine materials into a single material
     
-    public static GameObject CombineMeshes(List<MeshFilter> meshFilters, Vector3 startPosition)
+    public static GameObject CombineMeshes(List<MeshFilter> meshFilters, Vector3 startPosition, Material material)
     {
         // Create a new GameObject to hold the combined mesh
         GameObject combinedObject = new GameObject("LoadedObject");
@@ -37,6 +37,8 @@ public static class MeshCombiner
 
         // Assign the combined mesh to the new object
         combinedMeshFilter.mesh = combinedMesh;
+        
+        combinedObject.GetComponent<MeshFilter>().mesh = combinedMesh;
 
         // Handle materials
         if (generateNewMaterial)
@@ -49,11 +51,11 @@ public static class MeshCombiner
                     materials[i] = meshFilters[i].GetComponent<MeshRenderer>().sharedMaterial;
                 }
             }
-            combinedMeshRenderer.materials = materials;
+            combinedMeshRenderer.material = materials[0];
         }
         else
         {
-            combinedMeshRenderer.material = meshFilters[0].GetComponent<MeshRenderer>().sharedMaterial;
+            combinedMeshRenderer.material = material;
         }
         
         return combinedObject;
