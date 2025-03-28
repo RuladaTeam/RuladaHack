@@ -16,6 +16,7 @@ public static class StlReader
     /// <returns>List of meshes.</returns>
     public static List<Mesh> Read(byte[] data)
     {
+        Meshes.Clear();
         var reader = new BinaryReader(new MemoryStream(data));
         reader.ReadBytes(80); // Skip the 80-byte header
 

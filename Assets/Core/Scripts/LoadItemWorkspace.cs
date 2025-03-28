@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Core.Scripts;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 
 public class LoadItemWorkspace : MonoBehaviour
 {
@@ -39,11 +36,18 @@ public class LoadItemWorkspace : MonoBehaviour
         
         string[] receivedNames = text.Substring(1,text.Length-2 ).Split(",");
 
-        while (_content.childCount > 0)
+        if (_content.childCount > 0)
         {
+            Debug.Log($"MAMA BLYA {_content.childCount}");
             Destroy(_content.GetChild(0).gameObject);
+            Debug.Log($"MAMA BLYA POPOZHE {_content.childCount}");
         }
-        
+
+        for (int i = _content.childCount - 1; i >= 0; i--)
+        {
+            Destroy(_content.GetChild(i).gameObject);
+        }
+
         foreach (var item in receivedNames)
         {
             _namesArray.Add(item);
