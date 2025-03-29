@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public static class StlReader 
 {
@@ -26,14 +27,13 @@ public static class StlReader
 
         var vertices = new List<Vector3>();
         var triangles = new List<int>();
+        var normals = new List<Vector3>();
         var triangleIndex = 0;
 
         for (var i = 0; i < trianglesCount; i++)
         {
-            // Skip the normal vector (not used in Unity Mesh)
-            reader.ReadSingle(); // Normal X
-            reader.ReadSingle(); // Normal Y
-            reader.ReadSingle(); // Normal Z
+            
+            var normal = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
 
             // Read the three vertices of the triangle
             var vertex1 = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
@@ -43,6 +43,10 @@ public static class StlReader
             vertices.Add(vertex1);
             vertices.Add(vertex2);
             vertices.Add(vertex3);
+            
+            normals.Add(normal);
+            normals.Add(normal);
+            normals.Add(normal);
 
             triangles.Add(triangleIndex++);
             triangles.Add(triangleIndex++);
@@ -56,8 +60,9 @@ public static class StlReader
                 continue;
             }
 
-            AddMesh(vertices, triangles);
-
+            AddMesh(vertices, triangles, normals);
+            
+            normals.Clear();
             vertices.Clear();
             triangles.Clear();
             triangleIndex = 0;
@@ -66,7 +71,7 @@ public static class StlReader
         // Add any remaining vertices and triangles
         if (vertices.Count > 0)
         {
-            AddMesh(vertices, triangles);
+            AddMesh(vertices, triangles, normals);
         }
 
         return Meshes;
@@ -77,16 +82,34 @@ public static class StlReader
     /// </summary>
     /// <param name="vertices">List of vertices.</param>
     /// <param name="triangles">List of triangle indices.</param>
-    private static void AddMesh(List<Vector3> vertices, List<int> triangles)
+    private static void AddMesh(List<Vector3> vertices, List<int> triangles, List<Vector3> normals)
     {
         var mesh = new Mesh
         {
             vertices = vertices.ToArray(),
-            triangles = triangles.ToArray()
+            triangles = triangles.ToArray(),
+        };
+        
+
+        for (int i = 0; i < triangles.Count ; i+=3)
+        {
+            (triangles[i], triangles[i + 2]) = (triangles[i + 2], triangles[i]);
+        }
+
+        
+        var meshInside = new Mesh
+        {
+            vertices = vertices.ToArray(),
+            triangles = triangles.ToArray(),
         };
 
         mesh.RecalculateNormals();
         mesh.Optimize();
         Meshes.Add(mesh);
+        
+        
+        meshInside.RecalculateNormals();
+        meshInside.Optimize();
+        Meshes.Add(meshInside);
     }
 }

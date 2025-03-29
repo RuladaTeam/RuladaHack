@@ -36,12 +36,6 @@ public class LoadItemWorkspace : MonoBehaviour
         
         string[] receivedNames = text.Substring(1,text.Length-2 ).Split(",");
 
-        if (_content.childCount > 0)
-        {
-            Debug.Log($"MAMA BLYA {_content.childCount}");
-            Destroy(_content.GetChild(0).gameObject);
-            Debug.Log($"MAMA BLYA POPOZHE {_content.childCount}");
-        }
 
         for (int i = _content.childCount - 1; i >= 0; i--)
         {

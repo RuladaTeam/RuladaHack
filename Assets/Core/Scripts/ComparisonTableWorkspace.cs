@@ -58,5 +58,11 @@ public class ComparisonTableWorkspace : MonoBehaviour
         if (_loadedObject == null) return;
         _loadedObject.transform.localScale = _defaultLoadedObjectScale + _defaultLoadedObjectScale * _scaleSlider.value;
     }
+
+
+    public void Penis()
+    {
+        Debug.Log("EBAT YA VAHUI");
+    }
     
 }
