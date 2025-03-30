@@ -89,11 +89,12 @@ public class LoadMenuButton : MonoBehaviour
         combinedObj.AddComponent<GrabbableWithName>();
         
         string objectType = string.Empty;
-        if (combinedObj.name[^1] == 'I')
+        TextMeshProUGUI textMesh = gameObject.GetComponentInChildren<TextMeshProUGUI>();
+        if (textMesh.text[^1] == 'I')
         {
             objectType = "МРТ";
         }
-        else if (combinedObj.name[^1] == 'T')
+        else if (textMesh.text[^1] == 'T')
         {
             objectType = "КТ";
         }

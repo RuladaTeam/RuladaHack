@@ -5571,8 +5571,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2144041218}
-        m_TargetAssemblyTypeName: TableUI, Assembly-CSharp
+      - m_Target: {fileID: 765705102}
+        m_TargetAssemblyTypeName: TableWorkspace, Assembly-CSharp
         m_MethodName: SetObjectScale
         m_Mode: 1
         m_Arguments:
@@ -13545,6 +13545,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 765705100}
+  - component: {fileID: 765705101}
+  - component: {fileID: 765705102}
   m_Layer: 0
   m_Name: TableWorkspace
   m_TagString: Untagged
@@ -13569,6 +13571,41 @@ Transform:
   - {fileID: 210791343}
   m_Father: {fileID: 57637123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &765705101
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765705099}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.4998139, y: 0.22010839, z: 0.306243}
+  m_Center: {x: 0.0036280155, y: 0.107476175, z: 0.0052874982}
+--- !u!114 &765705102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765705099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efec59fcd1c66e84aa044256a3fbf152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _referenceObject: {fileID: 2118907657}
+  _sliderForScale: {fileID: 297468096}
 --- !u!1 &769543698
 GameObject:
   m_ObjectHideFlags: 0
@@ -19085,6 +19122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1070228802}
   - component: {fileID: 1070228803}
+  - component: {fileID: 1070228804}
   m_Layer: 0
   m_Name: ComparisonTableWorkspace
   m_TagString: Untagged
@@ -19123,11 +19161,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29522171c1ef9034f80f678d9b546e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultObject: {fileID: 0}
+  _defaultObject: {fileID: 593160225}
   _sliderForScale: {fileID: 1096113489}
   _sliderForCutPlane: {fileID: 1063205889}
   _referenceObject: {fileID: 593160225}
   _objectSpawn: {fileID: 1367529530}
+--- !u!65 &1070228804
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070228801}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5035198, y: 0.3315655, z: 0.4949646}
+  m_Center: {x: 0.0045298934, y: 0.16096812, z: 0.06699705}
 --- !u!1 &1071025388
 GameObject:
   m_ObjectHideFlags: 0
@@ -27954,8 +28013,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2144041218}
-        m_TargetAssemblyTypeName: TableUI, Assembly-CSharp
+      - m_Target: {fileID: 765705102}
+        m_TargetAssemblyTypeName: TableWorkspace, Assembly-CSharp
         m_MethodName: ResetObjectPosition
         m_Mode: 1
         m_Arguments:
@@ -40549,6 +40608,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectOnTable: {fileID: 0}
   _slider: {fileID: 297468096}
+  _defaultObjectPosition: {x: 0, y: 0, z: 0}
+  _defaultObjectRotation: {x: 0, y: 0, z: 0, w: 0}
+  _defaultObjectScale: {x: 0, y: 0, z: 0}
+  _scaleSlider: {fileID: 0}
 --- !u!1 &2146532485
 GameObject:
   m_ObjectHideFlags: 0
