@@ -20,7 +20,7 @@ public class UltrasonographyTabs : MonoBehaviour
     private const string URL_PATIENTS = Config.URL + "/ultras/patients";
     private const string URL_NAMES = Config.URL + "/ultras/names";
 
-    private string _currentPatient = "";
+    public string _currentPatient = "";
 
     private void Awake()
     {

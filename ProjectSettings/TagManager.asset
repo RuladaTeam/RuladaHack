@@ -8,6 +8,14 @@ TagManager:
   - QDSUITooltip
   - QDSUISharedThemeColor
   - Spawn
+  - QDSUIBorderlessButton
+  - QDSUIIcon
+  - QDSUISection
+  - QDSUIAccentColor
+  - QDSUISecondaryButton
+  - QDSUIToggleButton
+  - QDSUITextSecondaryColor
+  - Videoplayer
   layers:
   - Default
   - TransparentFX
