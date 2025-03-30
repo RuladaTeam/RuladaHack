@@ -11,7 +11,7 @@ public class LoadItemWorkspace : MonoBehaviour
     [SerializeField] private Transform _content;
    
     private List<string> _namesArray = new ();
-    private const string URL = Config.URL + "/names";
+    private const string URL = Config.URL + "/archive/names";
 
     private void Start()
     {
