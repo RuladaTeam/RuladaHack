@@ -23,11 +23,6 @@ public class TableUI : MonoBehaviour
         _defaultObjectRotation = _objectOnTable.transform.rotation;
         _defaultObjectScale = _objectOnTable.transform.localScale;
     }
-    
-    public void CloseTab()
-    {
-        Workspace.Instance.DisableUI();
-    }
 
     public void ResetObjectPosition()
     {

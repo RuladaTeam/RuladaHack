@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -6,7 +8,8 @@ public class LayerSelectionMenu : MonoBehaviour
 {
     [Header("Layers")]
     [SerializeField] private GameObject _skinLayer;
-    [SerializeField] private GameObject _organLayer;
+    [SerializeField] private GameObject _glandLayer;
+    [SerializeField] private GameObject _tracheaLayer;
     [SerializeField] private GameObject _lymphLayer;
     [SerializeField] private GameObject _veinsLayer;
     [SerializeField] private GameObject _arteryLayer;
@@ -27,9 +30,11 @@ public class LayerSelectionMenu : MonoBehaviour
 
     private void SetLayerTransparency(GameObject obj, float value)
     {
-        Color materialColor = obj.GetComponent<Material>().color;
+        Material material = obj.GetComponent<MeshRenderer>().sharedMaterial;;
+        Color materialColor = material.color;
         materialColor.a = value;
-        obj.GetComponent<Material>().color = materialColor;
+        material.color = materialColor;
+        obj.GetComponentInChildren<MeshRenderer>().sharedMaterial = material;
     }
     
     public void SetSkinActive(bool isActive)
@@ -39,7 +44,8 @@ public class LayerSelectionMenu : MonoBehaviour
     
     public void SetOrganActive(bool isActive)
     {
-        SetLayerActive(_organLayer, isActive);
+        SetLayerActive(_tracheaLayer, isActive);
+        SetLayerActive(_glandLayer, isActive);
     }
     
     public void SetLymphActive(bool isActive)
@@ -69,7 +75,8 @@ public class LayerSelectionMenu : MonoBehaviour
 
     public void SetOrganLayerTransparency()
     {
-        SetLayerTransparency(_organLayer, _organSlider.value);
+        SetLayerTransparency(_tracheaLayer, _organSlider.value);
+        SetLayerTransparency(_glandLayer, _organSlider.value);
     }
 
     public void SetLymphLayerTransparency()

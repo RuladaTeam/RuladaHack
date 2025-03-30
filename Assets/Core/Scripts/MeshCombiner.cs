@@ -3,13 +3,13 @@ using UnityEngine;
 
 public static class MeshCombiner
 {
-    public static bool useSharedMesh = false;  // Use shared meshes (faster but modifies original meshes)
     public static bool generateNewMaterial = true; // Combine materials into a single material
     
-    public static GameObject CombineMeshes(List<MeshFilter> meshFilters, Vector3 startPosition, Material material)
+    public static GameObject CombineMeshes(List<MeshFilter> meshFilters, Transform parentTransform, Vector3 startPosition, Material material)
     {
         // Create a new GameObject to hold the combined mesh
         GameObject combinedObject = new GameObject("LoadedObject");
+        combinedObject.transform.SetParent(parentTransform);
         combinedObject.transform.position = startPosition;
 
         // Add a MeshFilter and MeshRenderer to the new object
@@ -59,7 +59,11 @@ public static class MeshCombiner
         // {
         //     combinedMeshRenderer.materials = new[] { material };
         // }
-        combinedMeshRenderer.materials = new[] { material };
+
+        combinedMeshRenderer.sharedMaterial = material;
+        material.SetFloat("_flow", 150f);
+        combinedMeshRenderer.material = combinedMeshRenderer.sharedMaterial;
+        
         return combinedObject;
     }
 }

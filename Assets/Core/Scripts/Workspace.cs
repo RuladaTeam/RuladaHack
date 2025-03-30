@@ -8,10 +8,6 @@ public class Workspace : MonoBehaviour
     [Space(10)] 
     [Header("DefaultCanvas")] 
     [SerializeField] private DefaultCanvas _defaultCanvas;
-    [Space(10)]
-    [Header("TableWorkspace")]
-    [SerializeField] private GameObject _uiForDefault;
-    [SerializeField] private GameObject _uiForSelected;
 
     // [Space(10)]
     // [Header("ComparisonTableWorkspace")]
@@ -29,31 +25,4 @@ public class Workspace : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
-    {
-        
-        //DisableUI();
-        _defaultCanvas.OnDefaultItemSetActive += DefaultCanvas_OnDefaultItemSetActive;
-        _defaultCanvas.OnSelectItemSetActive += DefaultCanvas_OnSelectItemSetActive;
-    }
-
-    private void DefaultCanvas_OnSelectItemSetActive(object sender, EventArgs e)
-    {
-        _uiForSelected.SetActive(true);
-        _uiForDefault.SetActive(false);
-    }
-
-    private void DefaultCanvas_OnDefaultItemSetActive(object sender, EventArgs e)
-    {
-        _uiForSelected.SetActive(false);
-        _uiForDefault.SetActive(true);
-    }
-
-    public void DisableUI()
-    {
-        _uiForDefault.SetActive(false);
-        _uiForSelected.SetActive(false);
-        _defaultItemWorkspace.SetActive(false);
-        _loadItemWorkspace.SetActive(false);
-    }
 }

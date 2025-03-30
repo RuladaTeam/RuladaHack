@@ -10,7 +10,6 @@ using UnityEngine.UI;
 
 public class LoadMenuButton : MonoBehaviour
 {
-
     [SerializeField] private Vector3 _startPositionOnTable;
     [SerializeField] private Material _loadedObjectMaterial;
 
@@ -48,7 +47,9 @@ public class LoadMenuButton : MonoBehaviour
                 objectSeparated.Add(obj);
             }
 
-            GameObject combinedObj = MeshCombiner.CombineMeshes(meshFilters, _startPositionOnTable, _loadedObjectMaterial);
+            GameObject spawn = GameObject.FindWithTag("Spawn");
+            GameObject combinedObj = MeshCombiner.CombineMeshes(
+                meshFilters, spawn.transform, _startPositionOnTable, _loadedObjectMaterial);
             SetupObject(combinedObj);
             
 
