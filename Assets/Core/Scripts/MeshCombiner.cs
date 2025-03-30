@@ -64,6 +64,10 @@ public static class MeshCombiner
         material.SetFloat("_flow", 150f);
         combinedMeshRenderer.material = combinedMeshRenderer.sharedMaterial;
         
+        Bounds modelBounds = combinedObject.GetComponent<MeshFilter>().mesh.bounds;
+        Vector3 offset = combinedObject.transform.position - combinedObject.transform.TransformPoint(modelBounds.center * 0.001f);
+        combinedObject.transform.position = startPosition + offset;
+        
         return combinedObject;
     }
 }

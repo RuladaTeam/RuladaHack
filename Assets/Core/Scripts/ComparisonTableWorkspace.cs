@@ -80,7 +80,7 @@ public class ComparisonTableWorkspace : MonoBehaviour
             Material material = child.gameObject.GetComponent<MeshRenderer>().sharedMaterial;
             if (child == _referenceObject.transform)
             {
-                material.SetFloat("_flow",-1f * (_cutPlaneSlider.value * 1.75f - 2.25f));
+                material.SetFloat("_flow",-1f * (_cutPlaneSlider.value * 1.74f - 2.25f));
             }
             else
             {

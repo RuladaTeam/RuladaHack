@@ -10218,6 +10218,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: etalonFlippedOnemesh
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5c4e664133e1944fa19e00f837a137d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10237,6 +10241,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b5c4e664133e1944fa19e00f837a137d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 593160226}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b5c4e664133e1944fa19e00f837a137d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 593160233}
   m_SourcePrefab: {fileID: 100100000, guid: b5c4e664133e1944fa19e00f837a137d, type: 3}
 --- !u!4 &593160224 stripped
 Transform:
@@ -10382,6 +10389,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2500098, y: 1.7569367, z: 1.3015751}
   m_Center: {x: -0.005516533, y: -0.06123329, z: 0.16217563}
+--- !u!114 &593160233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593160225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bf1b7791a942f3b9426f7813f00bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RussianName: "\u042D\u0442\u0430\u043B\u043E\u043D \u0436\u0435\u043B\u0435\u0437\u044B"
 --- !u!1 &597952558
 GameObject:
   m_ObjectHideFlags: 0
@@ -19311,9 +19331,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1070228803}
-        m_TargetAssemblyTypeName: ComparisonTableWorkspace, Assembly-CSharp
-        m_MethodName: ResetObjectPosition
+      - m_Target: {fileID: 1597195258}
+        m_TargetAssemblyTypeName: Magnet, Assembly-CSharp
+        m_MethodName: SetActive
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27434,6 +27454,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491956831}
   m_CullTransparentMesh: 1
+--- !u!1 &1498316245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1498316246}
+  m_Layer: 0
+  m_Name: anchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1498316246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498316245}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 10.9, z: -0.232}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1597195256}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1500117931
 GameObject:
   m_ObjectHideFlags: 0
@@ -29545,6 +29596,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1597195256}
+  - component: {fileID: 1597195258}
+  - component: {fileID: 1597195257}
   m_Layer: 0
   m_Name: Magnet
   m_TagString: Untagged
@@ -29568,8 +29621,44 @@ Transform:
   - {fileID: 468952808}
   - {fileID: 1913511516}
   - {fileID: 1097926055}
+  - {fileID: 1498316246}
   m_Father: {fileID: 1082279195}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1597195257
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597195255}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.16157179, y: 10.066962, z: 0.5934569}
+  m_Center: {x: -0.00053519505, y: 4.5334816, z: -0.2032716}
+--- !u!114 &1597195258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597195255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f84e60ed052915247bbf61bc7aa51040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anchor: {fileID: 1498316246}
+  _objectsList: {fileID: 1398429513}
 --- !u!1 &1599609743
 GameObject:
   m_ObjectHideFlags: 0
@@ -36557,8 +36646,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1981966259}
-  m_Layer: 0
-  m_Name: ReferenceModelParent
+  m_Layer: 8
+  m_Name: ReferenceModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39111,7 +39200,8 @@ GameObject:
   - component: {fileID: 2118907661}
   - component: {fileID: 2118907660}
   - component: {fileID: 2118907659}
-  m_Layer: 0
+  - component: {fileID: 2118907664}
+  m_Layer: 8
   m_Name: ReferenceObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39274,6 +39364,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2118907664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118907657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bf1b7791a942f3b9426f7813f00bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RussianName: "\u042D\u0442\u0430\u043B\u043E\u043D (\u043F\u043E \u0441\u043B\u043E\u044F\u043C)"
 --- !u!1 &2120129070
 GameObject:
   m_ObjectHideFlags: 0
@@ -40519,7 +40622,7 @@ GameObject:
   - component: {fileID: 1124454203677505054}
   - component: {fileID: 4050150798350055867}
   - component: {fileID: 2292879735656254833}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Skin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40552,7 +40655,7 @@ GameObject:
   - component: {fileID: 7880188388294789831}
   - component: {fileID: 6645779440376895553}
   - component: {fileID: 7216265024010291725}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: veins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40638,7 +40741,7 @@ GameObject:
   - component: {fileID: 7091669410792838283}
   - component: {fileID: 6934506246689951946}
   - component: {fileID: 7808080119296225769}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40785,7 +40888,7 @@ GameObject:
   - component: {fileID: 4652217865603130582}
   - component: {fileID: 2492822588463748439}
   - component: {fileID: 6550546289286128699}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: arteries
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40811,7 +40914,7 @@ GameObject:
   - component: {fileID: 434983822579704395}
   - component: {fileID: 2317912790302015983}
   - component: {fileID: 6080990298397131939}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lymph
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40844,7 +40947,7 @@ GameObject:
   - component: {fileID: 8446338780486266685}
   - component: {fileID: 1879613603751369760}
   - component: {fileID: 1940182920085879117}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: trachea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40983,7 +41086,7 @@ GameObject:
   - component: {fileID: 2341396516405568068}
   - component: {fileID: 3123126045641878845}
   - component: {fileID: 2782954469999612190}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: gland
   m_TagString: Untagged
   m_Icon: {fileID: 0}

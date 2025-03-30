@@ -86,7 +86,19 @@ public class LoadMenuButton : MonoBehaviour
         combinedObj.GetComponent<Rigidbody>().useGravity = false;
         combinedObj.GetComponent<Rigidbody>().isKinematic = true;
         combinedObj.GetComponent<BoxCollider>().isTrigger = true;
-             
+        combinedObj.AddComponent<GrabbableWithName>();
+        
+        string objectType = string.Empty;
+        if (combinedObj.name[^1] == 'I')
+        {
+            objectType = "МРТ";
+        }
+        else if (combinedObj.name[^1] == 'T')
+        {
+            objectType = "КТ";
+        }
+        combinedObj.GetComponent<GrabbableWithName>().RussianName = $"Загруженный объект {objectType}";
+
     }
 
 }
