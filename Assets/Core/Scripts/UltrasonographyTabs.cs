@@ -4,7 +4,6 @@ using Core.Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.Serialization;
 
 public class UltrasonographyTabs : MonoBehaviour
 {

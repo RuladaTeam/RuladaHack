@@ -22,6 +22,7 @@ public class LoadMenuButton : MonoBehaviour
 
     public void OnButtonClick()
     {
+        Debug.Log($"suka merzkiy {this.gameObject.name}");
         StartCoroutine(DownloadFile());
     }
 
@@ -36,6 +37,7 @@ public class LoadMenuButton : MonoBehaviour
         }
         else
         {
+            Debug.Log("request suka");
             byte[] stlData = www.downloadHandler.data;
             List<Mesh> meshes = StlReader.Read(stlData);
             List<MeshFilter> meshFilters = new List<MeshFilter>();
